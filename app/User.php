@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Models\Vehicle\Vehicle;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -36,4 +37,13 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+	/**
+	 * user-vehicle: 다대일
+	 * @return \Illuminate\Database\Eloquent\Relations\HasMany
+	 */
+    public function vehicles()
+	{
+		return $this->hasMany(Vehicle::class);
+	}
 }

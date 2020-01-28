@@ -25,7 +25,6 @@ class CreatePkgProdTable extends Migration
 			$table->foreign('pkg_id')->references('id')->on('pkgs')->onDelete('cascade')->onUpdate('cascade');
 			$table->foreign('prod_id')->references('id')->on('prods')->onDelete('cascade')->onUpdate('cascade');
 
-
 			$table->timestamps();
         });
     }

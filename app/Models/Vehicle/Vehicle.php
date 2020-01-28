@@ -4,6 +4,7 @@ namespace App\Models\Vehicle;
 
 use App\Models\Care\Care;
 use App\Models\Subsc\Subsc;
+use App\User;
 use Illuminate\Database\Eloquent\Model;
 
 class Vehicle extends Model
@@ -19,25 +20,30 @@ class Vehicle extends Model
         'vin',
 	];
 
-
 	/**
 	 * care-vehicle: 일대다
 	 * @return \Illuminate\Database\Eloquent\Relations\HasMany
 	 */
     public function cares()
 	{
-		return $this->hasMany(Care::class);
+		return $this->hasMany(Care::class, 'vehicle_vin', 'vin');
 	}
 
 	/**
-	 * sub-vehicle: 일대일
+	 * subsc-vehicle: 일대일
 	 * @return \Illuminate\Database\Eloquent\Relations\HasOne
 	 */
 	public function subsc()
 	{
-		return $this->hasOne(Subsc::class);
+		return $this->hasOne(Subsc::class, 'vehicle_vin', 'vin');
 	}
 
-
-
+	/**
+	 * user-vehicle: 다대일
+	 * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+	 */
+	public function users()
+	{
+		return $this->belongsTo(User::class);
+	}
 }
