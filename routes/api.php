@@ -23,7 +23,7 @@ Route::group(['domain' => config('project.api_domain'), 'namespace' => 'Api', 'a
 		Route::resource('/foos', 'Foo\FoosController');
 		Route::resource('/pkgs', 'Pkg\PkgsController');
 		Route::resource('/prods', 'Prod\ProdsController');
-		Route::resource('/subs', 'Sub\SubsController');
+		Route::resource('/subscs', 'Subsc\SubscsController');
 		Route::resource('/vehicles', 'Vehicle\VehiclesController');
 	});
 });

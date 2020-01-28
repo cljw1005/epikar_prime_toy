@@ -167,9 +167,6 @@ return [
          *
          */
         ////////
-		// appkr/api
-		//Appkr\Api\ApiServiceProvider::class,
-		Appkr\Api\ApiServiceProvider::class,
 		////////
 
 		/*

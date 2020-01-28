@@ -4,9 +4,9 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSubsTable extends Migration
+class CreateSubscsTable extends Migration
 {
-    private $name = 'subs';
+    private $name = 'subscs';
     private $comment = '구독';
 
     /**
@@ -45,9 +45,9 @@ class CreateSubsTable extends Migration
     public function down()
     {
         Schema::table($this->name, function (Blueprint $table) {
-            //$table->dropForeign('subs_vehicle_id_foreign');
-			$table->dropForeign('subs_vehicle_vin_foreign');
-			$table->dropForeign('subs_pkg_id_foreign');
+            //$table->dropForeign('subscs_vehicle_id_foreign');
+			$table->dropForeign('subscs_vehicle_vin_foreign');
+			$table->dropForeign('subscs_pkg_id_foreign');
         });
 
         Schema::dropIfExists($this->name);

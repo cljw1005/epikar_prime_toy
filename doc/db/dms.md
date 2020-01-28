@@ -1,4 +1,5 @@
 ## company
+* 딜러그룹: Cxx
 * 고객번호
 * 고객이름
 * 생성일
@@ -11,6 +12,7 @@
 
 
 ## customer
+* 딜러그룹: Txx
 * 법인번호
 * 법인이름
 * 생성일
@@ -22,6 +24,7 @@
 
 
 ## service history
+* 딜러그룹: Hxxxxxxxxxxxxxxxxx
 * 서비스일
 * 차대번호
 * 송장번호
@@ -41,7 +44,8 @@
 * 할인비율
 
 
-## vehicle
+## vehicle: V
+* 딜러그룹: Vxx
 * 차량번호
 * 차대번호
 * 등록번호

@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Vehicle\Vehicle;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
+use App\Http\Resources\Vehicle\VehicleCollection;
+use App\Http\Resources\Vehicle\VehicleResource;
 
 class VehiclesController extends Controller
 {
@@ -29,9 +31,11 @@ class VehiclesController extends Controller
      */
     public function index()
     {
-        $outs = Vehicle::all();
+        //$outs = Vehicle::all();
+		//return response()->json($outs, Response::HTTP_OK, [], JSON_PRETTY_PRINT);
+        $outs = Vehicle::orderBy('updated_at')->paginate(PM_PAGINATION_LIMIT_DEFAULT);
 
-		return response()->json($outs, Response::HTTP_OK, [], JSON_PRETTY_PRINT);
+        return new VehicleCollection($outs);
     }
 
 	/**
@@ -42,9 +46,10 @@ class VehiclesController extends Controller
 	 */
 	public function show(Vehicle $vehicle)
 	{
-		$outs = $vehicle;
+		//$outs = $vehicle;
+		//return response()->json($outs, Response::HTTP_OK, [], JSON_PRETTY_PRINT);
 
-		return response()->json($outs, Response::HTTP_OK, [], JSON_PRETTY_PRINT);
+		return new VehicleResource($vehicle);
 	}
 
     /**
@@ -63,7 +68,8 @@ class VehiclesController extends Controller
             'vin' => $request->input('vin') . $postfix,
 		]);
 
-		return response()->json($outs, Response::HTTP_OK, [], JSON_PRETTY_PRINT);
+		return new VehicleResource($outs);
+		//return response()->json($outs, Response::HTTP_OK, [], JSON_PRETTY_PRINT);
     }
 
     /**

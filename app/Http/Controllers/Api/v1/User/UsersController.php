@@ -1,31 +1,20 @@
 <?php
 
-namespace App\Http\Controllers\Api\v1\Sub;
+namespace App\Http\Controllers\Api\v1\User;
 
 use App\Http\Controllers\Controller;
-use App\Models\Sub\Sub;
+use App\User;
 use Illuminate\Http\Request;
 
-class SubsController extends Controller
+class UsersController extends Controller
 {
 	/**
 	 * Remove the specified resource from storage.
 	 *
-	 * @param  \App\Models\Sub\Sub  $sub
+	 * @param  \App\User  $user
 	 * @return \Illuminate\Http\Response
 	 */
-	public function destroy(Sub $sub)
-	{
-		//
-	}
-
-	/**
-	 * Display the specified resource.
-	 *
-	 * @param  \App\Models\Sub\Sub  $sub
-	 * @return \Illuminate\Http\Response
-	 */
-	public function show(Sub $sub)
+	public function destroy(User $user)
 	{
 		//
 	}
@@ -39,6 +28,17 @@ class SubsController extends Controller
     {
         //
     }
+
+	/**
+	 * Display the specified resource.
+	 *
+	 * @param  \App\User  $user
+	 * @return \Illuminate\Http\Response
+	 */
+	public function show(User $user)
+	{
+		//
+	}
 
     /**
      * Store a newly created resource in storage.
@@ -55,10 +55,10 @@ class SubsController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Sub\Sub  $sub
+     * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Sub $sub)
+    public function update(Request $request, User $user)
     {
         //
     }

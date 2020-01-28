@@ -2,12 +2,12 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
-use App\Models\Sub\Sub;
+use App\Models\Subsc\Subsc;
 use Faker\Generator as Faker;
 
-$factory->define(Sub::class, function (Faker $faker) {
+$factory->define(Subsc::class, function (Faker $faker) {
 
-	$ids = Sub::get()->pluck('vehicle_id')->toArray();
+	$ids = Subsc::get()->pluck('vehicle_id')->toArray();
 
     return [
 		//'vehicle_id' => \App\Models\Vehicle\Vehicle::whereNotIn('id', $ids)->inRandomOrder()->first()->id,

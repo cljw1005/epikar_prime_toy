@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class SubsTableSeeder extends Seeder
+class SubscsTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,6 +11,6 @@ class SubsTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(\App\Models\Sub\Sub::class, 50)->create();
+        factory(\App\Models\Subsc\Subsc::class, 50)->create();
     }
 }

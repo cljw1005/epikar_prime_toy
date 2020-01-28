@@ -15,8 +15,20 @@ class DatabaseSeeder extends Seeder
 			DB::statement('SET FOREIGN_KEY_CHECKS=0');
 		}
 
+		\App\Models\User\UserDm::truncate();
+		$this->call(UserDmsTableSeeder::class);
+
+		\App\Models\Vehicle\VehicleDm::truncate();
+		$this->call(VehicleDmsTableSeeder::class);
+
+		\App\Models\Care\CareDm::truncate();
+		$this->call(CareDmsTableSeeder::class);
+
 		\App\Models\Foo\Foo::truncate();
 		$this->call(FoosTableSeeder::class);
+
+		\App\User::truncate();
+		$this->call(UsersTableSeeder::class);
 
 		\App\Models\Vehicle\Vehicle::truncate();
 		$this->call(VehiclesTableSeeder::class);
@@ -33,8 +45,8 @@ class DatabaseSeeder extends Seeder
 		\App\Models\Pkg\PkgProd::truncate();
 		$this->call(PkgProdTableSeeder::class);
 
-		\App\Models\Sub\Sub::truncate();
-		$this->call(SubsTableSeeder::class);
+		\App\Models\Subsc\Subsc::truncate();
+		$this->call(SubscsTableSeeder::class);
 
 		if(config('database.default') !== 'sqlite') {
 			DB::statement('SET FOREIGN_KEY_CHECKS=1');
