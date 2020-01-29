@@ -6,6 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Models\Pkg\Pkg;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
+use App\Http\Resources\Pkg\PkgCollection;
+use App\Http\Resources\Pkg\PkgResource;
+
 
 class PkgsController extends Controller
 {
@@ -29,9 +32,12 @@ class PkgsController extends Controller
      */
     public function index()
     {
-        $outs = Pkg::all();
+        //$outs = Pkg::all();
 
-		return response()->json($outs, Response::HTTP_OK, [], JSON_PRETTY_PRINT);
+		//return response()->json($outs, Response::HTTP_OK, [], JSON_PRETTY_PRINT);
+        $outs = Pkg::orderBy('updated_at')->paginate(PM_PAGINATION_LIMIT_DEFAULT);
+
+        return new PkgCollection($outs);
     }
 
 	/**

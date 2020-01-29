@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Api\v1\User;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\User\UserCollection;
+use App\Http\Resources\User\UserResource;
 use App\User;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -31,7 +33,8 @@ class UsersController extends Controller
     {
         $outs = User::all();
 
-		return response()->json($outs, Response::HTTP_OK, [], JSON_PRETTY_PRINT);
+		//return response()->json($outs, Response::HTTP_OK, [], JSON_PRETTY_PRINT);
+		return new UserCollection($outs);
     }
 
 	/**
@@ -42,14 +45,10 @@ class UsersController extends Controller
 	 */
 	public function show(User $user)
 	{
-    	$postfix = '_' . now()->toString();
+		$outs = $user;
 
-		$outs = User::create([
-			'title' => $request->input('title') . $postfix,
-			'content' => $request->input('content') . $postfix,
-		]);
-
-		return response()->json($outs, Response::HTTP_OK, [], JSON_PRETTY_PRINT);
+		//return response()->json($outs, Response::HTTP_OK, [], JSON_PRETTY_PRINT);
+		return new UserResource($outs);
     }
 
     /**
@@ -71,7 +70,8 @@ class UsersController extends Controller
             
 		]);
 
-		return response()->json($outs, Response::HTTP_OK, [], JSON_PRETTY_PRINT);
+		//return response()->json($outs, Response::HTTP_OK, [], JSON_PRETTY_PRINT);
+		return new UserResource($outs);
     }
 
     /**
@@ -83,6 +83,8 @@ class UsersController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        //
+		$outs = User::update($request->all());
+
+		return response()->json($outs, Response::HTTP_OK, [], JSON_PRETTY_PRINT);
     }
 }

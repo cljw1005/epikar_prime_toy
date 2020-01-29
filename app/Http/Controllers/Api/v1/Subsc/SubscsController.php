@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Subsc\Subsc;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
+use App\Http\Resources\Subsc\SubscCollection;
+use App\Http\Resources\Subsc\SubscResource;
 
 
 class SubscsController extends Controller
@@ -43,9 +45,12 @@ class SubscsController extends Controller
      */
     public function index()
     {
-        $outs = Subsc::all();
+        //$outs = Subsc::all();
 
-		return response()->json($outs, Response::HTTP_OK, [], JSON_PRETTY_PRINT);
+		    //return response()->json($outs, Response::HTTP_OK, [], JSON_PRETTY_PRINT);
+        $outs = Subsc::orderBy('updated_at')->paginate(PM_PAGINATION_LIMIT_DEFAULT);
+
+        return new SubscCollection($outs);  
     }
 
     /**

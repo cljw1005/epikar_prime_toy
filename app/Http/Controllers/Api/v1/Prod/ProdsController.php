@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Prod\Prod;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
+use App\Http\Resources\Prod\ProdCollection;
+use App\Http\Resources\Prod\ProdResource;
 
 class ProdsController extends Controller
 {
@@ -29,10 +31,14 @@ class ProdsController extends Controller
      */
     public function index()
     {
-         $outs = Prod::all();
+        // $outs = Prod::all();
 
-		return response()->json($outs, Response::HTTP_OK, [], JSON_PRETTY_PRINT);
-    }
+		//return response()->json($outs, Response::HTTP_OK, [], JSON_PRETTY_PRINT);
+		
+		$outs = Prod::orderBy('updated_at')->paginate(PM_PAGINATION_LIMIT_DEFAULT);
+
+        return new ProdCollection($outs);
+	}
 
 	/**
 	 * Display the specified resource.

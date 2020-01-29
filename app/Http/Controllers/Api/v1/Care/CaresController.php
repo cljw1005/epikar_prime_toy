@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Care\Care;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
+use App\Http\Resources\Care\CareCollection;
+use App\Http\Resources\Care\CareResource;
 
 class CaresController extends Controller
 {
@@ -29,9 +31,13 @@ class CaresController extends Controller
      */
     public function index()
     {
-        $outs = Care::all();
+        //$outs = Care::all();
 
-		return response()->json($outs, Response::HTTP_OK, [], JSON_PRETTY_PRINT);
+		//return response()->json($outs, Response::HTTP_OK, [], JSON_PRETTY_PRINT);
+        $outs = Care::orderBy('updated_at')->paginate(PM_PAGINATION_LIMIT_DEFAULT);
+
+        return new CareCollection($outs);
+    
     }
 
 	/**
