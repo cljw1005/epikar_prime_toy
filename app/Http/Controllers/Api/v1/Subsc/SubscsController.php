@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Api\v1\Subsc;
 use App\Http\Controllers\Controller;
 use App\Models\Subsc\Subsc;
 use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\Response;
+
 
 class SubscsController extends Controller
 {
@@ -16,7 +18,9 @@ class SubscsController extends Controller
 	 */
 	public function destroy(Subsc $subsc)
 	{
-		//
+		$outs = $subsc->delete();
+
+		return response()->json($outs, Response::HTTP_OK, [], JSON_PRETTY_PRINT);
 	}
 
 	/**
@@ -27,7 +31,9 @@ class SubscsController extends Controller
 	 */
 	public function show(Subsc $subsc)
 	{
-		//
+		$outs = $subsc;
+
+		return response()->json($outs, Response::HTTP_OK, [], JSON_PRETTY_PRINT);
 	}
 
     /**
@@ -37,7 +43,9 @@ class SubscsController extends Controller
      */
     public function index()
     {
-        //
+        $outs = Subsc::all();
+
+		return response()->json($outs, Response::HTTP_OK, [], JSON_PRETTY_PRINT);
     }
 
     /**
@@ -48,7 +56,17 @@ class SubscsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+    	$postfix = '_' . now()->toString();
+
+		$outs = Subsc::create([
+			'title' => $request->input('title') . $postfix,
+            'content' => $request->input('content') . $postfix,
+            'vehicle_vin' => $request->input('vehicle_vin'). $postfix,
+            'pkg_id' => $request->input('pkg_id'). $postfix,
+            
+		]);
+
+		return response()->json($outs, Response::HTTP_OK, [], JSON_PRETTY_PRINT);
     }
 
     /**
@@ -60,6 +78,8 @@ class SubscsController extends Controller
      */
     public function update(Request $request, Subsc $subsc)
     {
-        //
+    	$outs = $subsc->update($request->all()); //dd($request->all());
+
+		return response()->json($outs, Response::HTTP_OK, [], JSON_PRETTY_PRINT);
     }
 }

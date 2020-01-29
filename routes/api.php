@@ -24,6 +24,7 @@ Route::group(['domain' => config('project.api_domain'), 'namespace' => 'Api', 'a
 		Route::resource('/pkgs', 'Pkg\PkgsController');
 		Route::resource('/prods', 'Prod\ProdsController');
 		Route::resource('/subscs', 'Subsc\SubscsController');
+		Route::resource('/users', 'User\UsersController');
 		Route::resource('/vehicles', 'Vehicle\VehiclesController');
 	});
 });

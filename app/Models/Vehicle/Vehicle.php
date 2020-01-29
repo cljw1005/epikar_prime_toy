@@ -42,7 +42,7 @@ class Vehicle extends Model
 	 * user-vehicle: 다대일
 	 * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
 	 */
-	public function users()
+	public function user()
 	{
 		return $this->belongsTo(User::class);
 	}

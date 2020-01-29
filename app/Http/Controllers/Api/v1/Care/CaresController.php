@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\v1\Care;
 use App\Http\Controllers\Controller;
 use App\Models\Care\Care;
 use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class CaresController extends Controller
 {
@@ -16,7 +17,9 @@ class CaresController extends Controller
 	 */
 	public function destroy(Care $care)
 	{
-		//
+		$outs = $care->delete();
+
+		return response()->json($outs, Response::HTTP_OK, [], JSON_PRETTY_PRINT);
 	}
 
     /**
@@ -26,7 +29,9 @@ class CaresController extends Controller
      */
     public function index()
     {
-        //
+        $outs = Care::all();
+
+		return response()->json($outs, Response::HTTP_OK, [], JSON_PRETTY_PRINT);
     }
 
 	/**
@@ -37,7 +42,9 @@ class CaresController extends Controller
 	 */
 	public function show(Care $care)
 	{
-		//
+		$outs = $care;
+
+		return response()->json($outs, Response::HTTP_OK, [], JSON_PRETTY_PRINT);
 	}
 
     /**
@@ -48,7 +55,15 @@ class CaresController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $postfix = '_' . now()->toString();
+
+		$outs = Care::create([
+			'title' => $request->input('title') . $postfix,
+            'content' => $request->input('content') . $postfix,
+            'vehicle_vin' => $request->input('vehicle_vin'). $postfix,
+		]);
+
+		return response()->json($outs, Response::HTTP_OK, [], JSON_PRETTY_PRINT);
     }
 
     /**
@@ -60,6 +75,8 @@ class CaresController extends Controller
      */
     public function update(Request $request, Care $care)
     {
-        //
+        $outs = $care->update($request->all()); //dd($request->all());
+
+		return response()->json($outs, Response::HTTP_OK, [], JSON_PRETTY_PRINT);
     }
 }

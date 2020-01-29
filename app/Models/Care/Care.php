@@ -7,6 +7,19 @@ use Illuminate\Database\Eloquent\Model;
 
 class Care extends Model
 {
+
+	protected $casts = [
+		'options' => 'array',
+	];
+
+    protected $fillable = [
+		'content',
+		'options',
+		'title',
+		'vehicle_id',
+	];
+
+
 	/**
 	 * care-vehicle: 일대다
 	 * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
@@ -15,4 +28,6 @@ class Care extends Model
 	{
 		return $this->belongsTo(Vehicle::class, 'vehicle_vin', 'vin');
 	}
+
+	
 }

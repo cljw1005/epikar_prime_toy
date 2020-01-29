@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\v1\Prod;
 use App\Http\Controllers\Controller;
 use App\Models\Prod\Prod;
 use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class ProdsController extends Controller
 {
@@ -16,7 +17,9 @@ class ProdsController extends Controller
 	 */
 	public function destroy(Prod $prod)
 	{
-		//
+		$outs = $prod->delete();
+
+		return response()->json($outs, Response::HTTP_OK, [], JSON_PRETTY_PRINT);
 	}
 
     /**
@@ -26,7 +29,9 @@ class ProdsController extends Controller
      */
     public function index()
     {
-        //
+         $outs = Prod::all();
+
+		return response()->json($outs, Response::HTTP_OK, [], JSON_PRETTY_PRINT);
     }
 
 	/**
@@ -37,7 +42,9 @@ class ProdsController extends Controller
 	 */
 	public function show(Prod $prod)
 	{
-		//
+		$outs = $prod;
+
+		return response()->json($outs, Response::HTTP_OK, [], JSON_PRETTY_PRINT);
 	}
 
     /**
@@ -48,7 +55,14 @@ class ProdsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+    	$postfix = '_' . now()->toString();
+
+		$outs = Prod::create([
+			'title' => $request->input('title') . $postfix,
+			'content' => $request->input('content') . $postfix,
+		]);
+
+		return response()->json($outs, Response::HTTP_OK, [], JSON_PRETTY_PRINT);
     }
 
     /**
@@ -60,6 +74,8 @@ class ProdsController extends Controller
      */
     public function update(Request $request, Prod $prod)
     {
-        //
+    	$outs = $prod->update($request->all()); //dd($request->all());
+
+		return response()->json($outs, Response::HTTP_OK, [], JSON_PRETTY_PRINT);
     }
 }
