@@ -19,7 +19,7 @@ class CreateVehiclesTable extends Migration
         Schema::create($this->name, function (Blueprint $table) {
             $table->bigIncrements('id');
 
-			$table->string('vin', 128)->comment('차대번호')->index();
+			$table->string('num_id', 128)->comment('차대번호')->index();
 
 			$table->unsignedBigInteger('user_id')->comment('사용자 아이디');
 

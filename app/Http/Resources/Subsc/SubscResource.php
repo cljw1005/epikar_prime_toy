@@ -16,7 +16,8 @@ class SubscResource extends JsonResource
     {
     	return [
     		'id' => $this->id,
-			'vin' => $this->vin,
+            'vehicle_num_id' => $this->vehicle_num_id,
+            'pkg_id' => $this->pkg_id,
 			'title' => $this->title,
 			'content' => $this->content,
 			'options' => $this->options,

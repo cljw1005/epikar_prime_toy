@@ -31,10 +31,11 @@ class UsersController extends Controller
      */
     public function index()
     {
-        $outs = User::all();
+      $outs = User::orderBy('updated_at')->paginate(PM_PAGINATION_LIMIT_DEFAULT);
+      
+      return new UserCollection($outs);
 
-		//return response()->json($outs, Response::HTTP_OK, [], JSON_PRETTY_PRINT);
-		return new UserCollection($outs);
+       
     }
 
 	/**
@@ -47,7 +48,6 @@ class UsersController extends Controller
 	{
 		$outs = $user;
 
-		//return response()->json($outs, Response::HTTP_OK, [], JSON_PRETTY_PRINT);
 		return new UserResource($outs);
     }
 
@@ -70,7 +70,6 @@ class UsersController extends Controller
             
 		]);
 
-		//return response()->json($outs, Response::HTTP_OK, [], JSON_PRETTY_PRINT);
 		return new UserResource($outs);
     }
 

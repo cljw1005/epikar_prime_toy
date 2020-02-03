@@ -31,9 +31,6 @@ class CaresController extends Controller
      */
     public function index()
     {
-        //$outs = Care::all();
-
-		//return response()->json($outs, Response::HTTP_OK, [], JSON_PRETTY_PRINT);
         $outs = Care::orderBy('updated_at')->paginate(PM_PAGINATION_LIMIT_DEFAULT);
 
         return new CareCollection($outs);
@@ -48,10 +45,8 @@ class CaresController extends Controller
 	 */
 	public function show(Care $care)
 	{
-		$outs = $care;
-
-		return response()->json($outs, Response::HTTP_OK, [], JSON_PRETTY_PRINT);
-	}
+        return new CareResource($care);
+    }
 
     /**
      * Store a newly created resource in storage.
@@ -66,10 +61,10 @@ class CaresController extends Controller
 		$outs = Care::create([
 			'title' => $request->input('title') . $postfix,
             'content' => $request->input('content') . $postfix,
-            'vehicle_vin' => $request->input('vehicle_vin'). $postfix,
-		]);
-
-		return response()->json($outs, Response::HTTP_OK, [], JSON_PRETTY_PRINT);
+            'vehicle_num_id' => $request->input('vehicle_num_id'). $postfix,
+        ]);
+        
+        return new CareResource($outs);
     }
 
     /**

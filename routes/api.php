@@ -20,11 +20,12 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::group(['domain' => config('project.api_domain'), 'namespace' => 'Api', 'as' => 'api.', 'middleware' => []], function() {
 	Route::group(['prefix' => 'v1', 'namespace' => 'v1', 'as' => 'v1.'], function() {
 		Route::resource('/cares', 'Care\CaresController');
-		Route::resource('/foos', 'Foo\FoosController');
 		Route::resource('/pkgs', 'Pkg\PkgsController');
 		Route::resource('/prods', 'Prod\ProdsController');
+		Route::resource('/promos', 'Promo\PromosController');
 		Route::resource('/subscs', 'Subsc\SubscsController');
 		Route::resource('/users', 'User\UsersController');
 		Route::resource('/vehicles', 'Vehicle\VehiclesController');
+		Route::resource('/vehiclecats', 'Vehicle\VehicleCatsController');
 	});
 });

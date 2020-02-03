@@ -26,7 +26,7 @@ class Care extends Model
 	 */
     public function vehicle()
 	{
-		return $this->belongsTo(Vehicle::class, 'vehicle_vin', 'vin');
+		return $this->belongsTo(Vehicle::class, 'vehicle_num_id', 'num_id');
 	}
 
 	

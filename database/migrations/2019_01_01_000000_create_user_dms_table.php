@@ -20,9 +20,19 @@ class CreateUserDmsTable extends Migration
             $table->bigIncrements('id');
 
 			$table->string('dealer_group_code', 32)->comment('딜러 그룹 코드');
-			$table->string('sn')->comment('고객번호');
-			$table->string('name')->comment('고객이름');
-
+			$table->string('num_serial')->comment('고객번호')->index();
+            $table->string('name')->comment('고객이름');
+           
+            //FIXME BEGIN
+			$table->timestamp('date_created')->nullable()->comment('생성일');
+			$table->timestamp('date_updated')->nullable()->comment('수정일');
+            $table->string('tel_1', 30)->nullable()->comment('전화번호1');
+            $table->string('tel_2', 30)->nullable()->comment('전화번호2');
+            $table->string('addr', 2048)->nullable()->comment('주소');
+            $table->string('post', 30)->nullable()->comment('우편번호');
+            $table->string('email')->nullable()->comment('이메일');
+            //FIXME END
+            
             $table->timestamps();
         });
     }

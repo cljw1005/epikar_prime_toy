@@ -14,6 +14,7 @@ class SubscCollection extends ResourceCollection
 			unset($outs['created_at']);
 			unset($outs['options']);
 			unset($outs['updated_at']);
+
 			$outs['content'] = mb_substr($item->content, 0, 200);
 
 			return $outs;

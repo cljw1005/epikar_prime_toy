@@ -32,9 +32,6 @@ class PkgsController extends Controller
      */
     public function index()
     {
-        //$outs = Pkg::all();
-
-		//return response()->json($outs, Response::HTTP_OK, [], JSON_PRETTY_PRINT);
         $outs = Pkg::orderBy('updated_at')->paginate(PM_PAGINATION_LIMIT_DEFAULT);
 
         return new PkgCollection($outs);
@@ -48,10 +45,8 @@ class PkgsController extends Controller
 	 */
 	public function show(Pkg $pkg)
 	{
-		$outs = $pkg;
-
-		return response()->json($outs, Response::HTTP_OK, [], JSON_PRETTY_PRINT);
-	}
+        return new PkgResource($pkg);
+    }
 
     /**
      * Store a newly created resource in storage.
@@ -68,7 +63,7 @@ class PkgsController extends Controller
 			'content' => $request->input('content') . $postfix,
 		]);
 
-		return response()->json($outs, Response::HTTP_OK, [], JSON_PRETTY_PRINT);
+        return new PkgResource($outs);
     }
 
     /**
@@ -80,7 +75,7 @@ class PkgsController extends Controller
      */
     public function update(Request $request, Pkg $pkg)
     {
-        $outs = $pkg->update($request->all()); //dd($request->all());
+        $outs = $pkg->update($request->all());
 
 		return response()->json($outs, Response::HTTP_OK, [], JSON_PRETTY_PRINT);
     }

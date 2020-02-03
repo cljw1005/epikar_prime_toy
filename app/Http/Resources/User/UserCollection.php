@@ -11,10 +11,12 @@ class UserCollection extends ResourceCollection
 		$this->collection->transform(function($item) {
 			$outs = $item->toArray();
 
-			unset($outs['created_at']);
-			unset($outs['options']);
-			unset($outs['updated_at']);
-			$outs['name'] = mb_substr($item->name, 0, 200);
+			//unset($outs['id']);
+			unset($outs['email_verified_at']);
+			unset($outs['password']);
+			unset($outs['remember_token']);
+			//$outs['id'] = mb_substr($item->name, 0, 20);
+			//$outs['name'] = mb_substr($item->name, 0, 20);
 
 			return $outs;
 		});

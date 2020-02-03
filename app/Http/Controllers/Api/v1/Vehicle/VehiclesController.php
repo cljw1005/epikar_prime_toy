@@ -65,7 +65,7 @@ class VehiclesController extends Controller
 		$outs = Vehicle::create([
 			'title' => $request->input('title') . $postfix,
             'content' => $request->input('content') . $postfix,
-            'vin' => $request->input('vin') . $postfix,
+            'num_id' => $request->input('num_id') . $postfix,
 		]);
 
 		return new VehicleResource($outs);

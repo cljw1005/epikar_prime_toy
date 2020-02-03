@@ -23,6 +23,6 @@ class Subsc extends Model
 	 */
 	public function vehicle()
 	{
-		return $this->hasOne(Vehicle::class, 'vin', 'vehicle_vin');
+		return $this->hasOne(Vehicle::class, 'num_id', 'vehicle_num_id');
 	}
 }

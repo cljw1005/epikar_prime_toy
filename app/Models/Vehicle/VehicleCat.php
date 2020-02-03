@@ -1,18 +1,18 @@
 <?php
 
-namespace App\Models\Foo;
+namespace App\Models\Vehicle;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Foo extends Model
+class VehicleCat extends Model
 {
-	protected $casts = [
+    protected $casts = [
 		'options' => 'array',
 	];
 
     protected $fillable = [
 		'content',
 		'options',
-		'title',
+		
 	];
 }

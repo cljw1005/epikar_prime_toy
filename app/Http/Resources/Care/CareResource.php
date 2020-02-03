@@ -15,8 +15,8 @@ class CareResource extends JsonResource
     public function toArray($request)
     {
     	return [
-    		'id' => $this->id,
-			'vin' => $this->vin,
+    		'id' => $this->id,      
+            'vehicle_num_id' => $this->vehicle_num_id,
 			'title' => $this->title,
 			'content' => $this->content,
 			'options' => $this->options,

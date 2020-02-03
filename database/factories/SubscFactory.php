@@ -11,7 +11,7 @@ $factory->define(Subsc::class, function (Faker $faker) {
 
     return [
 		//'vehicle_id' => \App\Models\Vehicle\Vehicle::whereNotIn('id', $ids)->inRandomOrder()->first()->id,
-		'vehicle_vin' => \App\Models\Vehicle\Vehicle::whereNotIn('id', $ids)->inRandomOrder()->first()->vin,
+		'vehicle_num_id' => \App\Models\Vehicle\Vehicle::whereNotIn('id', $ids)->inRandomOrder()->first()->num_id,
 		'pkg_id' => \App\Models\Pkg\Pkg::inRandomOrder()->first()->id,
 		'title' => $faker->sentence,
 		'content' => $faker->paragraph,

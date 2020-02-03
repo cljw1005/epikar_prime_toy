@@ -11,6 +11,9 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', function () { return view('welcome'); });
+
+
+//////// vue BEGIN
+Route::any('/admin/{path}', function () { return File::get(public_path('admin/index.html')); });
+//////// vue END

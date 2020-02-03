@@ -33,10 +33,10 @@ class SubscsController extends Controller
 	 */
 	public function show(Subsc $subsc)
 	{
-		$outs = $subsc;
+		//$outs = $subsc;
 
-		return response()->json($outs, Response::HTTP_OK, [], JSON_PRETTY_PRINT);
-	}
+        return new SubscResource($subsc);
+    }
 
     /**
      * Display a listing of the resource.
@@ -45,12 +45,9 @@ class SubscsController extends Controller
      */
     public function index()
     {
-        //$outs = Subsc::all();
-
-		    //return response()->json($outs, Response::HTTP_OK, [], JSON_PRETTY_PRINT);
         $outs = Subsc::orderBy('updated_at')->paginate(PM_PAGINATION_LIMIT_DEFAULT);
 
-        return new SubscCollection($outs);  
+        return new SubscCollection($outs);
     }
 
     /**
@@ -66,12 +63,12 @@ class SubscsController extends Controller
 		$outs = Subsc::create([
 			'title' => $request->input('title') . $postfix,
             'content' => $request->input('content') . $postfix,
-            'vehicle_vin' => $request->input('vehicle_vin'). $postfix,
+            'vehicle_num_id' => $request->input('vehicle_num_id'). $postfix,
             'pkg_id' => $request->input('pkg_id'). $postfix,
             
 		]);
 
-		return response()->json($outs, Response::HTTP_OK, [], JSON_PRETTY_PRINT);
+        return new SubscResource($outs);  
     }
 
     /**
@@ -83,7 +80,7 @@ class SubscsController extends Controller
      */
     public function update(Request $request, Subsc $subsc)
     {
-    	$outs = $subsc->update($request->all()); //dd($request->all());
+    	$outs = $subsc->update($request->all());
 
 		return response()->json($outs, Response::HTTP_OK, [], JSON_PRETTY_PRINT);
     }

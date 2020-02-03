@@ -16,7 +16,6 @@ class ProdResource extends JsonResource
     {
     	return [
     		'id' => $this->id,
-			'vin' => $this->vin,
 			'title' => $this->title,
 			'content' => $this->content,
 			'options' => $this->options,

@@ -31,10 +31,6 @@ class ProdsController extends Controller
      */
     public function index()
     {
-        // $outs = Prod::all();
-
-		//return response()->json($outs, Response::HTTP_OK, [], JSON_PRETTY_PRINT);
-		
 		$outs = Prod::orderBy('updated_at')->paginate(PM_PAGINATION_LIMIT_DEFAULT);
 
         return new ProdCollection($outs);
@@ -48,9 +44,7 @@ class ProdsController extends Controller
 	 */
 	public function show(Prod $prod)
 	{
-		$outs = $prod;
-
-		return response()->json($outs, Response::HTTP_OK, [], JSON_PRETTY_PRINT);
+		return new ProdResource($prod);
 	}
 
     /**
@@ -68,7 +62,7 @@ class ProdsController extends Controller
 			'content' => $request->input('content') . $postfix,
 		]);
 
-		return response()->json($outs, Response::HTTP_OK, [], JSON_PRETTY_PRINT);
+		return new ProdResource($outs);
     }
 
     /**
@@ -80,7 +74,7 @@ class ProdsController extends Controller
      */
     public function update(Request $request, Prod $prod)
     {
-    	$outs = $prod->update($request->all()); //dd($request->all());
+    	$outs = $prod->update($request->all());
 
 		return response()->json($outs, Response::HTTP_OK, [], JSON_PRETTY_PRINT);
     }

@@ -17,7 +17,7 @@ class Vehicle extends Model
 		'content',
 		'options',
         'title',
-        'vin',
+        'num_id',
 	];
 
 	/**
@@ -26,7 +26,7 @@ class Vehicle extends Model
 	 */
     public function cares()
 	{
-		return $this->hasMany(Care::class, 'vehicle_vin', 'vin');
+		return $this->hasMany(Care::class, 'vehicle_num_id', 'num_id');
 	}
 
 	/**
@@ -35,7 +35,7 @@ class Vehicle extends Model
 	 */
 	public function subsc()
 	{
-		return $this->hasOne(Subsc::class, 'vehicle_vin', 'vin');
+		return $this->hasOne(Subsc::class, 'vehicle_num_id', 'num_id');
 	}
 
 	/**
